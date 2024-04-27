@@ -20,7 +20,7 @@ export default [
       stargazersCount: 21553,
       ratingAverage: 88,
       reviewCount: 4,
-      ownerAvatarUrl: 'https://avatars2.githubusercontent.com/u/4060187?v=4'
+      ownerAvatarUrl: 'https://dyc39.com/wp-content/uploads/2024/04/Defensor-Rosales.jpeg'
     },
     {
       id: 'rails.rails',

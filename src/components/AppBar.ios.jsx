@@ -7,7 +7,7 @@ import { Link, useLocation } from 'react-router-native'
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.appBar.primary,
+    backgroundColor: 'red',
     flexDirection: 'row',
     paddingTop: Constants.statusBarHeight + 10
   },
@@ -45,8 +45,8 @@ const AppBar = () => {
   return (
     <View style={styles.container}>
       <ScrollView showsHorizontalScrollIndicator={false} horizontal style={styles.scroll}>
-        <AppBarTab to='/'>Equipos</AppBarTab>
-        <AppBarTab to='/signin'>Buscar</AppBarTab>
+        <AppBarTab to='/'>Repositories</AppBarTab>
+        <AppBarTab to='/signin'>Sign In</AppBarTab>
       </ScrollView>
     </View>
   )
