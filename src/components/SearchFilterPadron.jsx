@@ -10,7 +10,9 @@ import { FlatList,
 
 import filter from "lodash.filter"
 
-const API_ENDPOINT = `https://randomuser.me/api/?results=30`
+//const API_ENDPOINT = `https://api-control-padron.onrender.com/ejemplo`
+
+const API_ENDPOINT = `https://api-control-padron.onrender.com/padron`
 
 const SearchFilterPadron = () => {    
 
@@ -29,10 +31,11 @@ const SearchFilterPadron = () => {
         try {
             const response = await fetch(url);
             const json = await response.json();
-            setData(json.results);
+            console.log(json);
+            setData(json);
 
-            console.log(json.results);
-            setFullData(json.results)
+            console.log(json);
+            setFullData(json)
             setIsLoading(false);
         }catch(error){
             setError(error)
@@ -50,11 +53,14 @@ const SearchFilterPadron = () => {
         setData(filteredData)
     };
 
-    const contains = ({name, email}, query) =>{
-        const {first, last} = name;    
-        if(first.includes(query) 
-            || last.includes(query) 
-            || email.includes(query)){
+    const contains = ({nroDocumento, apellidos, nombres,perfil, nombreEquipo}, query) =>{
+        
+        if(nroDocumento.includes(query) 
+            || apellidos.toLowerCase().includes(query) 
+            || nombres.toLowerCase().includes(query)
+            || nombreEquipo.toLowerCase().includes(query)
+            || perfil.toLowerCase().includes(query)
+            ){
             return true;
         }
         return false
@@ -86,13 +92,12 @@ const SearchFilterPadron = () => {
         />
         <FlatList
             data={data}
-            keyExtractor={(item) => item.login.username}
+            keyExtractor={(item) => item.id}
             renderItem={({item}) => (
-                <View style={styles.itemContainer}>
-                    <Image source={{uri: item.picture.thumbnail}} style={styles.image}/>
+                <View style={styles.itemContainer}>                    
                     <View>
-                        <Text style={styles.texName} >{item.name.first} {item.name.last}</Text>
-                        <Text style={styles.texEmail} >{item.email}</Text>
+                        <Text style={styles.texName} >{item.nroDocumento} - {item.apellidos} {item.nombres}</Text>
+                        <Text style={styles.texEmail} >{item.perfil} / {item.nombreEquipo}</Text>
                     </View>
                 </View>
             )}

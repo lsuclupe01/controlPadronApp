@@ -2,6 +2,7 @@ import React from "react";
 import { Text,View} from 'react-native';
 import RepositoryList from "./RepositoryList";
 import SearchFilter from "./SearchFilter";
+import SearchFilterPadron from "./SearchFilterPadron";
 import AppBar from "./AppBar";
 import { Route, Routes, BrowserRouter,Navigate } from "react-router-native";
 import RepositoryListEquipo from "./RepositoryListEquipo";
@@ -12,7 +13,7 @@ const Main = () =>{
             <AppBar/>           
             <Routes>
                 <Route path="/" element={<RepositoryListEquipo/>} />                                    
-                <Route path="/signin" element={<SearchFilter/>}/>      
+                <Route path="/signin" element={<SearchFilterPadron/>}/>      
             </Routes>
            
         </View>
