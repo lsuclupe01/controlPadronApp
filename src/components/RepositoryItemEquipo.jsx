@@ -6,10 +6,10 @@ import theme from '../theme.js'
 const RepositoryItemHeader = ({ id, nombre, urlLogo}) => (
   <View style={{ flexDirection: 'row', paddingBottom: 2 }}>
     <View style={{ paddingRight: 10 }}>
-      <Image style={styles.image} source={{ uri: urlLogo }} />
+      <Image style={styles.image} source={{ uri: urlLogo, headers: { 'Accept': 'image/*'} }} />
     </View>
     <View style={{ flex: 1 }}>
-      <StyledText fontWeight='bold'>{nombre}</StyledText>      
+      <StyledText fontWeight='bold'>{nombre} {urlLogo}</StyledText>      
       <View style={{ flexDirection: 'row', paddingBottom: 2 }}>
         <StyledText style={styles.language}>{id}</StyledText>        
       </View>
