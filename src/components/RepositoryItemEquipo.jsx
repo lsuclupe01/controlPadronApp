@@ -3,15 +3,17 @@ import { Image, View, StyleSheet,Text } from 'react-native'
 import StyledText from './StyledText.jsx'
 import theme from '../theme.js'
 
-const RepositoryItemHeader = ({ id, nombre, urlLogo}) => (
+const RepositoryItemHeader = ({ id, nombre, urlLogo, delegado, subdelegado,	entrenador}) => (
   <View style={{ flexDirection: 'row', paddingBottom: 2 }}>
-    <View style={{ paddingRight: 10 }}>
+    <View style={{ paddingRight: 10, justifyContent:'center'}}>
       <Image style={styles.image} source={{ uri: urlLogo, headers: { 'Accept': 'image/*'} }} />
     </View>
     <View style={{ flex: 1 }}>
-      <StyledText fontWeight='bold'>{nombre} {urlLogo}</StyledText>      
-      <View style={{ flexDirection: 'row', paddingBottom: 2 }}>
-        <StyledText style={styles.language}>{id}</StyledText>        
+      <StyledText fontWeight='bold'>{nombre}</StyledText>      
+      <View style={{ flexDirection: 'column', paddingBottom: 2 }}>
+        <StyledText style={styles.language}>Delegado: {delegado}</StyledText>        
+        <StyledText style={styles.language}>SubDelegado: {subdelegado}</StyledText>
+        <StyledText style={styles.language}>Entrenador: {entrenador}</StyledText>
       </View>
     </View>
   </View>
@@ -29,11 +31,11 @@ const styles = StyleSheet.create({
     paddingVertical: 5
   },
   language: {
-    padding: 4,
+    padding: 2,
     color: theme.colors.white,
     backgroundColor: theme.colors.primary,
     alignSelf: 'flex-start',
-    marginVertical: 4,
+    marginVertical: 2,
     borderRadius: 4,
     overflow: 'hidden'
   },
@@ -47,8 +49,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   image: {
-    width: 48,
-    height: 48,
+    width: 120,
+    height: 120,
     borderRadius: 4
   }
 })

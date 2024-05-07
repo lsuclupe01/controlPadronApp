@@ -30,11 +30,10 @@ const SearchFilterPadron = () => {
     const fetchData = async(url) => {
         try {
             const response = await fetch(url);
-            const json = await response.json();
-            console.log(json);
+            const json = await response.json();            
             setData(json);
 
-            console.log(json);
+            //console.log(json);
             setFullData(json)
             setIsLoading(false);
         }catch(error){
@@ -44,8 +43,7 @@ const SearchFilterPadron = () => {
     }
 
     const handleSearch = (query) => {
-        setSearchQuery(query);
-        console.log("Filtrando = "+query);
+        setSearchQuery(query);        
         const formattedQuery = query.toLowerCase();
         const filteredData = filter(fullData, (user) =>{
                 return contains(user, formattedQuery)
@@ -96,8 +94,8 @@ const SearchFilterPadron = () => {
             renderItem={({item}) => (
                 <View style={styles.itemContainer}>                    
                     <View>
-                        <Text style={styles.texName} >{item.nroDocumento} - {item.apellidos} {item.nombres}</Text>
-                        <Text style={styles.texEmail} >{item.perfil} / {item.nombreEquipo}</Text>
+                        <Text style={styles.texName} >{item.nroDocumento} - {item.apellidos} {item.nombres} / {item.categoria} </Text>
+                        <Text style={styles.texEmail} >{item.perfil} / {item.nombreEquipo}  / {item.fechaNacimiento}</Text>
                     </View>
                 </View>
             )}
