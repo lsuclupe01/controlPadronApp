@@ -9,6 +9,7 @@ import { FlatList,
         Image } from 'react-native'
 
 import filter from "lodash.filter"
+import CheckBox from 'react-native-check-box'
 
 //const API_ENDPOINT = `https://api-control-padron.onrender.com/ejemplo`
 
@@ -21,18 +22,24 @@ const SearchFilterPadron = () => {
     const [error, setError] = useState(null);
     const [fullData, setFullData] = useState([]);
     const [searchQuery, setSearchQuery] = useState("") ;
+    const [isChecked, setIsChecked] = useState(false);
+    let checkBox = [];
 
     useEffect(()=>{
         setIsLoading(true);
-        fetchData(API_ENDPOINT);
+        fetchData(API_ENDPOINT);        
     }, []);
 
     const fetchData = async(url) => {
         try {
             const response = await fetch(url);
             const json = await response.json();            
-            setData(json);
 
+            for (let i = 0; i < json.length; i++) {
+                checkBox.push({id:i});
+            }
+            
+            setData(json);
             //console.log(json);
             setFullData(json)
             setIsLoading(false);
@@ -94,7 +101,10 @@ const SearchFilterPadron = () => {
             renderItem={({item}) => (
                 <View style={styles.itemContainer}>                    
                     <View>
-                        <Text style={styles.texName} >{item.nroDocumento} - {item.apellidos} {item.nombres} / {item.categoria} </Text>
+                        <View style={{ flexDirection: 'row', paddingBottom: 2 }}>
+                            <Text style={styles.texName} >{item.nroDocumento} - {item.apellidos} {item.nombres} / {item.categoria} </Text>
+                            <CheckBox isChecked={isChecked} onClick={()=>setIsChecked(!isChecked)}  />
+                        </View>
                         <Text style={styles.texEmail} >{item.perfil} / {item.nombreEquipo}  / {item.fechaNacimiento}</Text>
                     </View>
                 </View>
